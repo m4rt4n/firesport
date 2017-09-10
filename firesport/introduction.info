@@ -1,0 +1,45 @@
+poznámky k projektu:
+	Simulátor hasičské sportovní disciplíny "Požární útok"
+
+-pro útoky 80/100m, muži i ženy
+
+	INPUT PRO "class attack"
+-"objekty" ovlivňující výsledný čas, čiili:
+-objekt soutěž (ve smyslu: tréning, soutěž, významná soutěž, ligové kolo, 
+exhibice, 80/100m,)
+-objekt tým
+-objekt počasí
+-objekt trat
+-objekt vercajk (potomek týmu)
+-objekt rozhodčí
+#nápady:
+	-objekt soutěž dodá 
+########################################################################
+	BODYOF "class attack"
+vypočítávává dosažené časy všech členů (7 lidí+mašina)
+při vstupu zahrne všechny objekty
+těsně po dokončení/nedokončení pokusu ovlivní atributy objektů:
+	-tým
+	-vercajk
+	-trat
+a vytvoří slovník všech časů v útoku
+
+	podrobnosti:
+-každý závodník má svúj celkový úsek rozdělen do několika menších úseků a 
+úkolů. Jednoduchý prototyp:
+start>->náběh k základně>->úkony na základně>->doběh na pozici>->finální úkon
+-Na zdolání každého z úseku, úkonu je potřeba jiných atributů a vlastností závodníka.
+-Každý z úseků dokáže ovlivnit následující zdolávání dalších úseků/úkonů v 
+pořadí
+-Po prřekonání každého z úseků u hlídaných vstupuje objekt rozhodčí
+#######################################################################
+	OUTPUT "class attack"
+
+-výsledné časy všech pozic na všech postech a úsecích
+
+
+	DALŠÍ INFORMACE K PROJEKTU
+-bude dál zlepšovat a zvětšovat počet atributů a vlasností týmu + vercajku
+-bude dál zlepšovat a zvětšovat počet atributů a vlastností tratě,počasí a
+ rozhodčích
+-celkově by měl vést k pozdější client/server herní aplikaci FiresportManager
