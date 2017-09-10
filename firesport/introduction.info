@@ -2,10 +2,10 @@ poznámky k projektu:
 	Simulátor hasičské sportovní disciplíny "Požární útok"
 
 -pro útoky 80/100m, muži i ženy
-
+#########################################################################
 	INPUT PRO "class attack"
 -"objekty" ovlivňující výsledný čas, čiili:
--objekt soutěž (ve smyslu: tréning, soutěž, významná soutěž, ligové kolo, 
+-objekt event (ve smyslu: tréning, soutěž, významná soutěž, ligové kolo, 
 exhibice, 80/100m,)
 -objekt tým
 -objekt počasí
@@ -13,7 +13,8 @@ exhibice, 80/100m,)
 -objekt vercajk (potomek týmu)
 -objekt rozhodčí
 #nápady:
-	-objekt soutěž dodá 
+	-objekt event dodá teoreticky všechno všechno potřebné -rozhodčí, typ soutěže, typ útoku, členy....
+
 ########################################################################
 	BODYOF "class attack"
 vypočítávává dosažené časy všech členů (7 lidí+mašina)
@@ -37,7 +38,7 @@ pořadí
 
 -výsledné časy všech pozic na všech postech a úsecích
 
-
+##########################################################################
 	DALŠÍ INFORMACE K PROJEKTU
 -bude dál zlepšovat a zvětšovat počet atributů a vlasností týmu + vercajku
 -bude dál zlepšovat a zvětšovat počet atributů a vlastností tratě,počasí a
