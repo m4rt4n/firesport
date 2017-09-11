@@ -66,12 +66,31 @@ class FSgenerator:
 		for x in range(0, 7):
 			atributes.append("{0}:{1}:{2}:{3}:{4}:{5}".format(names[x], self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101)))
 		return atributes
+	
+	def get_track(self):
+		"""generace trati"""
+		return "a"
+	
+	def get_team(self, name, track=False, engine=False, atributes=False, positions=False):
+		"""Skládaá tým ze jmána, mašiny, atributů, pozic. Vrací team v podobě seznamu. Pokud mu nejsou vloženy atributy nebo pozice, tak si krom mašiny generuje vše saám. objekt jméno musí být vloženo při inicializaci"""
+
+		if not engine:
+			engine = self.get_engine()
+		elif not track:
+			track = self.get_track()
+		elif not (atributes or positions):
+			names = self.get_names()
+			atributes = self.get_atributes(names)
+			positions = self.get_positions(names)
+		team = []
+		return team
 ###################################################################
-#gen = FSgenerator()
-#print(gen.get_engine())
-#names = gen.get_names()
-#print(names)
-#print(gen.get_weather())
-#print(gen.get_positions())
-#print(gen.get_atributes(names))
+# gen = FSgenerator()
+# print(gen.get_engine())
+# names = gen.get_names()
+# print(names)
+# print(gen.get_weather())
+# print(gen.get_positions())
+# print(gen.get_atributes(names))
+# print(gen.get_track())
 		
