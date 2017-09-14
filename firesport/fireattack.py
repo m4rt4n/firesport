@@ -60,7 +60,7 @@ attack = FireAttack(delka, pocasi, sdh_brumov)
 #testprint
 print("---------------------------\n")
 print("print(pocasi):>{0}\n".format(pocasi))
-#print("print(attack):> ..\n{0}\n".format(attack))
+print("print(attack):> ..\n{0}\n".format(attack))
 print("<<konec kodu>>")
 
 

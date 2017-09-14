@@ -1,7 +1,7 @@
 poznámky k projektu:
 	Simulátor hasičské sportovní disciplíny "Požární útok"
 
--pro útoky 80/100m, muži i ženy
+-pro útoky 80/100m, 
 #########################################################################
 	INPUT PRO "class attack"
 -"objekty" ovlivňující výsledný čas, čiili:
@@ -28,7 +28,7 @@ těsně po dokončení/nedokončení pokusu ovlivní atributy objektů:
 	-vercajk
 	-trat
 	-rozhodčí
-a vytvoří slovník všech časů v útoku
+a vytvoří kopletní statistiku všech časů v útoku
 
 	podrobnosti:
 -každý závodník má svúj celkový úsek rozdělen do několika menších úseků a 
@@ -54,6 +54,8 @@ pořadí
 
 ##########################################################################
 	NÁHODNÉ NÁPADY :)
+-vlastnosti rozděleny do kategorii: normální, vzácná, raritní
+-tímto se docílí toho, že místo v týmu mmá i člověk nesportovní...
 -vlastnosti hráčů: -ovlivnují věci spíš v inventáři a vše kolem
 	-dřevař -opravy, výroba věcí ze dřeva, bonus k životnosti dřevěnných věcí
 	-ajťák -reklama na netu, it novinky, atd...
@@ -64,4 +66,11 @@ pořadí
 	-mechanik -to samé co elektronik, ale týče se mechanických věcí
 	-řidič - rychlejsí doprava, menší spotřeba, životnost auta...
 -vlastnosti ovlivnují věci spíš v inventáři a vše kolem, každý obor dává jiný druh sponzorských darů
--
+
+
+-povaha hráčů, tu má každý danou od narození, je neměnná
+-klasické typy cholerik, flegmatik.....
+-povaha ho bude ovlivnovat skoro při všem
+
+-trat 20x105m 40X210 polí. Každé pole má svůj typ, kvalitu, podmáčenost.
+-kvalita pole při každé interakci klesaá o jeden bod.? kv 1-100

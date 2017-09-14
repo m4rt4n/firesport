@@ -22,6 +22,7 @@ class FSgenerator:
 		["bezvětrné", "s mírným vítrem", "se silným vítrem", "s extrémním vítrem"]
 		]
 	SURFACES = [
+
 		"tráva", "tráva s kobercem", "zámecká dlažba", "beton", "asfalt", "tartan"
 		]
 	import random as _random
@@ -67,39 +68,69 @@ class FSgenerator:
 			names = self.get_names()
 		atributes = list()
 		for x in range(0, 7):
-			atributes.append("{0}:{1}:{2}:{3}:{4}:{5}:{6}".format(names[x], self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101), self._random.randint(minimal, 101)))
+			atributes.append("{0}:{1}:{2}:{3}:{4}:{5}:{6}".format(names[x], self._random.randint(minimal, 100), self._random.randint(minimal, 100), self._random.randint(minimal, 100), self._random.randint(minimal, 100), self._random.randint(minimal, 100), self._random.randint(minimal, 100)))
 		return atributes
 	
-	def get_track(self, strain, pole):
+	def get_track(self, strain=1, pole=0):
 		"""
-		prní prarametr typ náběhu, druhý typ zbytku hřiště, náběh je od startu 
-		za káď. V šířce 15m (30 polí)
+		prní prarametr typ náběhu, druhý typ zbytku hřiště. Náběh je od startu 
+		za káď, v šířce 15m (30 polí). Káď má tozměr 1x1.5m (2x3políčka)
 
-		generace trati, rozměr 20mx105m (40X210 polí), trat je 4Dpole, rozdělené po 0.5m. v prvni vrstvě je určeno o jaký typ povrchu a jeho stupen kvality (O-100) se jedná. V další vrstvě hodnota podmáčenosti a v poslední rozmístění nářaadí (základna, káď, značky..)"""
+		generace trati, rozměr 17mx105m (34X210 polí), trat je 4Dpole, rozdělené po 0.5m. v prvni vrstvě je určeno o jaký typ povrchu a jeho stupen kvality (O-100) se jedná. V další vrstvě hodnota podmáčenosti(0-100) a v poslední rozmístění nářaadí (základna, káď, značky..)"""
 		
+		#jeste dedelat random výběr strain a pole, misto defaultu	
 		track = []
+		for ly in range(3):
+			layer = []
+			for li in range(34):
+				line = []
+				for x in range(210):
+					if ly == 0: #první vrstva:typ povrchu
+						if x <= 30: #šířka náběhu
+							line.append(strain)
+						else:
+							line.append(pole)
+					elif ly == 1: #druhá vrstva: podmáčenost(0)
+						line.append(0)
+					elif ly == 2: #třetí vrstva, rozmístění vercajku
+						if (1<=li<=3) and (20<=x<22):# kad
+							line.append("LAMFEŠT")
+						elif (12<=li<=15) and (18<=x<22):# zakladna
+							line.append("ZÁKLADNA")
+						else: # nic
+							line.append(False)
+				layer.append(line)
+			track.append(layer)
 		return track
-	
-	def get_team(self, name, track=False, engine=False, atributes=False, positions=False):
+	def get_team(self, name, engine=False, atributes=False, positions=False):
 		"""Skládaá tým ze jmána, mašiny, atributů, pozic. Vrací team v podobě seznamu. Pokud mu nejsou vloženy atributy nebo pozice, tak si krom mašiny generuje vše saám. objekt jméno musí být vloženo při inicializaci"""
-
 		if not engine:
 			engine = self.get_engine()
-		elif not track:
-			track = self.get_track()
-		elif not (atributes or positions):
+		if not (atributes or positions):
 			names = self.get_names()
 			atributes = self.get_atributes(names)
 			positions = self.get_positions(names)
-		team = []
+		team = {
+			"jméno" : str(name),
+			"mašina" : float(engine),
+			self.POSITIONS[0] : atributes[0].split(":"),
+			self.POSITIONS[1] : atributes[1].split(":"),
+			self.POSITIONS[2] : atributes[2].split(":"),
+			self.POSITIONS[3] : atributes[3].split(":"),
+			self.POSITIONS[4] : atributes[4].split(":"),
+			self.POSITIONS[5] : atributes[5].split(":"),
+			self.POSITIONS[6] : atributes[6].split(":")
+			}
 		return team
 ###################################################################
-gen = FSgenerator()
+#gen = FSgenerator()
 # print(gen.get_engine())
-names = gen.get_names()
+#names = gen.get_names()
 # print(names)
 # print(gen.get_weather())
 # print(gen.get_positions())
-print(gen.get_atributes(names))
-print(gen.get_track(1, 0))
-		
+#print(gen.get_atributes(names))
+#print(gen.get_track(1, 0))
+#track = gen.get_track(3, 4)
+#print(track)
+#print(gen.get_team("brumov"))
