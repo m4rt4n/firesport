@@ -82,7 +82,7 @@ class FSgenerator:
 		track = []
 		for ly in range(3):
 			layer = []
-			for li in range(34):
+			for li in range(36):
 				line = []
 				for x in range(210):
 					if ly == 0: #první vrstva:typ povrchu
