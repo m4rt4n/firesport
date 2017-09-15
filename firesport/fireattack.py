@@ -54,16 +54,18 @@ class FireAttack:
 		return int()
 
 	def _fa_preparator(self, man):
-		"""počítání tratí 
+		"""počítání tratí příjíma argument man, který je seznam jméno,atribut,..
+		-vypočítá jednotlivé trate závodníkům a vrátí:
+
 		vrací:
 			{
-				"START"	: [[xo,yo],[postihPovrchu]], #
+				"START"	: [[x,y],[postihPovrchu]], #
 				"1RUN"	: [postih, postih,.],
-				"1STOP"	: [[xi,yi],[postihPovrchu]],
+				"1STOP"	: [[x,y],[postihPovrchu]],
 				"2RUN"	: [postih,postih,postih..],
-				"2DROP"	: [[xi,yi,xo,yo],[postih]], // "2FINAL" : [[xi,yi],[postihPovrchu]]
+				"2DROP"	: [[x,y,[postih]], // "2FINAL" : [[x,y],[postihPovrchu]]
 				"3RUN"	: [postih,postih,..],
-				"3FINAL": [[xi,yi],[postihPovrchu]]
+				"3FINAL": [[x,y],[postihPovrchu]]
 			}
 
 		"""
@@ -73,31 +75,71 @@ class FireAttack:
 			"1STOP"	: [[],[]],
 			"2RUN"	: []
 			}
+		
 		if self._team["košař"][0] == man[0]: #košař
-			track["2FINAL"] = []
-			track["START"][0].extend([35,15])#startovní pozice
+			track["2FINAL"] = [[],[]]
+			######################################################
+			track["START"][0].extend([35,15])#startovní souřadnice
 			track["START"][1].extend([self._track[0][track["START"][0][0]][track["START"][0][1]]])
-			track["1RUN"].extend([12,15])#pozice zastávky u koše
-			#track["1RUN"][1].extend([])#rm
-			#temp=[]
-			#for x,y in range(12,35+1):
-				
-
+			track["1STOP"][0].extend([12,15])#1stop souřadnice
+			track["1STOP"][1].extend([self._track[0][track["1STOP"][0][0]][track["1STOP"][0][1]]])
+			track["2FINAL"][0].extend([2,17])#2final souřadnice
+			track["2FINAL"][1].extend([self._track[0][track["2FINAL"][0][0]][track["2FINAL"][0][1]]])
+		
 		elif self._team["nalévač"][0] == man[0]:#nálévač 
-			track["2FINAL"] = []
+			track["2FINAL"] = [[],[]]
+			######################################################
+			track["START"][0].extend([35,15])#startovní souřadnice
+			track["START"][1].extend([self._track[0][track["START"][0][0]][track["START"][0][1]]])
+			track["1STOP"][0].extend([15,15])#1stop souřadnice
+			track["1STOP"][1].extend([self._track[0][track["1STOP"][0][0]][track["1STOP"][0][1]]])
+			track["2FINAL"][0].extend([4,17])#2final souřadnice
+			track["2FINAL"][1].extend([self._track[0][track["2FINAL"][0][0]][track["2FINAL"][0][1]]])
+
 		elif self._team["strojník"][0] == man[0]:#strojník
-			track["2FINAL"] = []
+			track["2FINAL"] = [[],[]]
+			######################################################
+			track["START"][0].extend([35,16])#startovní souřadnice
+			track["START"][1].extend([self._track[0][track["START"][0][0]][track["START"][0][1]]])
+			track["1STOP"][0].extend([16,16])#1stop souřadnice
+			track["1STOP"][1].extend([self._track[0][track["1STOP"][0][0]][track["1STOP"][0][1]]])
+			track["2FINAL"][0].extend([11,17])#2final souřadnice
+			track["2FINAL"][1].extend([self._track[0][track["2FINAL"][0][0]][track["2FINAL"][0][1]]])
+
 		elif self._team["rozdělovač"][0] == man[0]:#rozdělovač
-			track["2FINAL"] = []
+			track["2FINAL"] = [[],[]]
+			######################################################
+			track["START"][0].extend([35,19])#startovní souřadnice
+			track["START"][1].extend([self._track[0][track["START"][0][0]][track["START"][0][1]]])
+			track["1STOP"][0].extend([16,19])#1stop souřadnice
+			track["1STOP"][1].extend([self._track[0][track["1STOP"][0][0]][track["1STOP"][0][1]]])
+			track["2FINAL"][0].extend([14,75])#2final souřadnice
+			track["2FINAL"][1].extend([self._track[0][track["2FINAL"][0][0]][track["2FINAL"][0][1]]])
 		elif self._team["béčkař"][0] == man[0] and self._lenght == 80:#báčkař80
-			track["2FINAL"] = []
+			track["2FINAL"] = [[],[]]
+			######################################################
+			track["START"][0].extend([35,24])#startovní souřadnice
+			track["START"][1].extend([self._track[0][track["START"][0][0]][track["START"][0][1]]])
+			track["1STOP"][0].extend([12,20])#1stop souřadnice
+			track["1STOP"][1].extend([self._track[0][track["1STOP"][0][0]][track["1STOP"][0][1]]])
+			track["2FINAL"][0].extend([8,40])#2final souřadnice
+			track["2FINAL"][1].extend([self._track[0][track["2FINAL"][0][0]][track["2FINAL"][0][1]]])
+		elif self._team["béčkař"][0] == man[0] and self._lenght == 100:#béčkař100
+			track["2DROP"] = [[],[]]
+			######################################################
+			track["START"][0].extend([35,24])#startovní souřadnice
+			track["START"][1].extend([self._track[0][track["START"][0][0]][track["START"][0][1]]])
+			track["1STOP"][0].extend([16,16])#1stop souřadnice
+			track["1STOP"][1].extend([self._track[0][track["1STOP"][0][0]][track["1STOP"][0][1]]])
+			track["2DROP"][0].extend([8,40])#2drop souřadnice
+			track["2DROP"][1].extend([self._track[0][track["2DROP"][0][0]][track["2DROP"][0][1]]])
 		else:
 			track["2DROP"] = [[],[]]
 			track["3RUN"] = []
 			track["3FINAL"] = [[],[]]
 		
-
 		return track
+
 	def tesst(self):
 		print(self._fa_preparator(self._team[self._fsgen.POSITIONS[0]]))
 		
@@ -105,8 +147,8 @@ class FireAttack:
 	def _fa_start(self, track, time):
 		"""pro všechny stejné, pvužit atribut Rychlost, Reakce, kvalita"""
 		import random as _random
-
 		return str("_fa_start..end")
+
 	def start(self):
 		self._temp_man = []
 		#self._temp_
